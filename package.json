@@ -19,6 +19,7 @@
     "express": "^4.13.4"
   },
   "devDependencies": {
+    "markdown-live": "^1.0.8",
     "nodemon": "^1.8.1"
   },
   "engines": {
@@ -29,6 +30,7 @@
     "build": "npm run build:clean && npm run build:js",
     "build:clean": "rm -rf _build && mkdir _build",
     "build:js": "babel . --ignore=node_modules --out-dir=_build --source-maps=inline --copy-files",
+    "preview:readme": "mdlive *.md",
     "test": "npm run lint && echo \"Lint only - no other tests yet\""
   }
 }
