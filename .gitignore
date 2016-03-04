@@ -1,0 +1,10 @@
+# dotfiles
+.DS_Store
+
+# files
+npm-debug.log
+TODO
+
+# folders
+_build
+node_modules
