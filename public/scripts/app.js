@@ -1,5 +1,5 @@
 (function (window) {
-    'use strict';
+  'use strict';
 
     // Your starting point. Enjoy the ride!
 

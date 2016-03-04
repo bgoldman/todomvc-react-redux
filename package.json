@@ -19,6 +19,9 @@
     "express": "^4.13.4"
   },
   "devDependencies": {
+    "babel-eslint": "^5.0.0",
+    "eslint": "^2.2.0",
+    "eslint-config-airbnb": "^6.0.2",
     "markdown-live": "^1.0.8",
     "nodemon": "^1.8.1"
   },
@@ -27,10 +30,14 @@
   },
   "scripts": {
     "start": "nodemon server.js --ignore _build --exec babel-node",
+    "start:build": "nodemon server.js --ignore _build --exec 'npm run build && cd _build && node'",
     "build": "npm run build:clean && npm run build:js",
     "build:clean": "rm -rf _build && mkdir _build",
     "build:js": "babel . --ignore=node_modules --out-dir=_build --source-maps=inline --copy-files",
+    "lint": "npm run lint:js",
+    "lint:js": "eslint src --fix",
     "preview:readme": "mdlive *.md",
-    "test": "npm run lint && echo \"Lint only - no other tests yet\""
+    "test": "npm run lint && npm run test:setup && echo \"Lint only - no other tests yet\"",
+    "test:setup": "npm run build"
   }
 }
