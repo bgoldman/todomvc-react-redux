@@ -30,6 +30,11 @@ if (env !== 'production') {
 
   // use hot reloading
   app.use(require('webpack-hot-middleware')(compiler));
+} else {
+  // serve app.js statically
+  app.get('/static/scripts/app.js', function(request, response) {
+    response.sendFile('app.js', { root: __dirname });
+  });
 }
 
 // static files

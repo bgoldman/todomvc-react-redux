@@ -1,12 +1,10 @@
-var config  = require('config');
 var path    = require('path');
 var webpack = require('webpack');
 
-var env = config.get('server.environment');
-
-var isDev = (env !== 'production');
+var isDev = (process.env.NODE_ENV !== 'production');
 
 module.exports = {
+  debug: isDev,
   devtool: isDev ? 'cheap-module-eval-source-map' : 'source-map',
   entry: isDev ? [
     'eventsource-polyfill', // necessary for hot reloading with IE
