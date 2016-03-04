@@ -1,16 +1,36 @@
 import config  from 'config';
 import express from 'express';
+import webpack from 'webpack';
 
-import Package from './package.json';
+import Package       from './package.json';
+import WebpackConfig from './webpack.config.js';
 
 // rather than hardcode the name and version, just pull it out of package.json :)
 const { name, version } = Package;
+
+// which env are we?
+const env = config.get('server.environment');
 
 // we need to allow a port override in deployments using env vars
 const port = config.get('server.port');
 
 // instantiate our Express instance
 const app = express();
+
+// set up dev to run webpack in realtime rather than compiled in advance
+if (env !== 'production') {
+  // instantiate our Webpack instance
+  const compiler = webpack(WebpackConfig);
+
+  // use middleware
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo:     true,
+    publicPath: WebpackConfig.output.publicPath
+  }));
+
+  // use hot reloading
+  app.use(require('webpack-hot-middleware')(compiler));
+}
 
 // static files
 app.use('/static', express.static('public'));

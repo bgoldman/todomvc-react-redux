@@ -3,7 +3,7 @@
     "modules": true
   },
   "parser": "babel-eslint",
-  "extends": "airbnb/base",
+  "extends": "airbnb",
   "rules": {
     "key-spacing": [2, {
       "singleLine": {
