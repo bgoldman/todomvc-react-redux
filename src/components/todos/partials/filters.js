@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-export default class TodoListFilters extends Component {
+class TodoListFilters extends Component {
   render() {
     const { filter } = this.props;
 
@@ -9,17 +9,17 @@ export default class TodoListFilters extends Component {
       <div>
         <ul className="filters">
           <li>
-            <a className={classNames({selected: !filter})} href="#/">All</a>
+            <a className={classNames({ selected: !filter })} href="#/">All</a>
           </li>
           <li>
             <a
-              className={classNames({selected: filter === 'active'})}
+              className={classNames({ selected: filter === 'active' })}
               href="#/active"
             >Active</a>
           </li>
           <li>
             <a
-              className={classNames({selected: filter === 'completed'})}
+              className={classNames({ selected: filter === 'completed' })}
               href="#/completed"
             >Completed</a>
           </li>
@@ -28,3 +28,9 @@ export default class TodoListFilters extends Component {
     );
   }
 }
+
+TodoListFilters.propTypes = {
+  filter: PropTypes.string,
+};
+
+export default TodoListFilters;

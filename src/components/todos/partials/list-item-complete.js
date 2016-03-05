@@ -1,11 +1,10 @@
-import classNames from 'classnames';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import actions from '../../../actions/todo';
 
 const { updateTodo } = actions;
 
-export default class TodoListItemComplete extends Component {
+class TodoListItemComplete extends Component {
   handleCheck() {
     const { todo } = this.props;
 
@@ -16,6 +15,7 @@ export default class TodoListItemComplete extends Component {
 
   render() {
     const { todo } = this.props;
+    const handleCheck = this.handleCheck.bind(this);
 
     return (
       <input
@@ -23,8 +23,14 @@ export default class TodoListItemComplete extends Component {
         className="toggle"
         type="checkbox"
         checked={todo.completed}
-        onChange={this.handleCheck.bind(this)}
+        onChange={handleCheck}
       />
     );
   }
 }
+
+TodoListItemComplete.propTypes = {
+  todo: PropTypes.object.isRequired,
+};
+
+export default TodoListItemComplete;

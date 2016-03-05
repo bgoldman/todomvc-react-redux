@@ -4,7 +4,7 @@ import Store from '../lib/store';
 
 export default {
   clearCompletedTodos() {
-    const todos        = Store.get('todos');
+    const todos = Store.get('todos');
     const updatedTodos = _.reject(todos, todo => todo.completed);
 
     Store.set('todos', updatedTodos);
@@ -13,7 +13,7 @@ export default {
   completeAllTodos() {
     const todos = Store.get('todos');
 
-    _.each(todos, todo => {todo.completed = true});
+    _.each(todos, todo => {todo.completed = true;});
     Store.set('todos', todos);
   },
 
@@ -25,7 +25,7 @@ export default {
   },
 
   deleteTodo(todo) {
-    const todos        = Store.get('todos');
+    const todos = Store.get('todos');
     const updatedTodos = _.reject(todos, t => todo === t);
 
     Store.set('todos', updatedTodos);
@@ -34,7 +34,7 @@ export default {
   uncompleteAllTodos() {
     const todos = Store.get('todos');
 
-    _.each(todos, todo => {todo.completed = false});
+    _.each(todos, todo => {todo.completed = false;});
     Store.set('todos', todos);
   },
 
@@ -43,5 +43,5 @@ export default {
 
     _.each(changes, (value, key) => { todo[key] = value; });
     Store.set('todos', todos);
-  }
-}
+  },
+};

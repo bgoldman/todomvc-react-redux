@@ -22,13 +22,15 @@ export default class TodoListCreate extends Component {
   }
 
   render() {
+    const handleSubmit = this.handleSubmit.bind(this);
+
     return (
       <input
         ref="new-todo"
         className="new-todo"
         placeholder="What needs to be done?"
-        autoFocus={true}
-        onKeyUp={this.handleSubmit.bind(this)}
+        autoFocus
+        onKeyUp={handleSubmit}
       />
     );
   }

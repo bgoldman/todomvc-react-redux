@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-export default class TodoListCount extends Component {
+class TodoListCount extends Component {
   numActiveTodos() {
     const { todos } = this.props;
 
@@ -20,3 +20,9 @@ export default class TodoListCount extends Component {
     );
   }
 }
+
+TodoListCount.propTypes = {
+  todos: PropTypes.array.isRequired,
+};
+
+export default TodoListCount;

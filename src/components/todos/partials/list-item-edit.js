@@ -1,14 +1,19 @@
-import classNames from 'classnames';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import actions from '../../../actions/todo';
 
 const { deleteTodo, updateTodo } = actions;
 
-const ENTER_KEY  = 13;
+const ENTER_KEY = 13;
 const ESCAPE_KEY = 27;
 
-export default class TodoListItemEdit extends Component {
+class TodoListItemEdit extends Component {
+  componentDidMount() {
+    const { edit } = this.refs;
+
+    edit.focus();
+  }
+
   handleSubmit(e) {
     const { stopEditing, todo } = this.props;
 
@@ -33,23 +38,25 @@ export default class TodoListItemEdit extends Component {
     updateTodo(todo, { title });
   }
 
-  componentDidMount() {
-    const { edit } = this.refs;
-
-    edit.focus();
-  }
-
   render() {
     const { stopEditing, todo } = this.props;
+    const handleSubmit = this.handleSubmit.bind(this);
 
     return (
       <input
         ref="edit"
         className="edit"
-        onKeyUp={this.handleSubmit.bind(this)}
+        onKeyUp={handleSubmit}
         onBlur={stopEditing}
         defaultValue={todo.title}
       />
     );
   }
 }
+
+TodoListItemEdit.propTypes = {
+  stopEditing: PropTypes.func.isRequired,
+  todo:        PropTypes.object.isRequired,
+};
+
+export default TodoListItemEdit;

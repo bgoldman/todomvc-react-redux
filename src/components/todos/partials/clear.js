@@ -10,8 +10,10 @@ export default class TodoListClear extends Component {
   }
 
   render() {
+    const handleClick = this.handleClick.bind(this);
+
     return (
-      <button className="clear-completed" onClick={this.handleClick.bind(this)}>
+      <button className="clear-completed" onClick={handleClick}>
         Clear completed
       </button>
     );

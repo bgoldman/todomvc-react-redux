@@ -1,6 +1,5 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
-import { Router, Route, hashHistory } from 'react-router'
+import React, { Component, PropTypes } from 'react';
 
 import Store from '../../../lib/store';
 
@@ -11,22 +10,11 @@ import TodoListCreate from '../partials/create';
 import TodoListFilters from '../partials/filters';
 import TodoListToggle from '../partials/toggle';
 
-export default class TodosIndexPage extends Component {
+class TodosIndexPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = { todos: [] };
-  }
-
-  filteredTodos() {
-    const { filter } = this.props;
-    const { todos }  = this.state;
-
-    if (!filter) {
-      return todos;
-    }
-
-    return _.filter(todos, todo => todo.completed === (filter === 'completed'));
   }
 
   componentDidMount() {
@@ -37,9 +25,20 @@ export default class TodosIndexPage extends Component {
     Store.unsubscribe('todos', this);
   }
 
+  filteredTodos() {
+    const { filter } = this.props;
+    const { todos } = this.state;
+
+    if (!filter) {
+      return todos;
+    }
+
+    return _.filter(todos, todo => todo.completed === (filter === 'completed'));
+  }
+
   render() {
-    const { filter }    = this.props;
-    const { todos }     = this.state;
+    const { filter } = this.props;
+    const { todos } = this.state;
     const filteredTodos = this.filteredTodos();
 
     return (
@@ -65,3 +64,9 @@ export default class TodosIndexPage extends Component {
     );
   }
 }
+
+TodosIndexPage.propTypes = {
+  filter: PropTypes.string,
+};
+
+export default TodosIndexPage;

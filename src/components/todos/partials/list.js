@@ -1,20 +1,22 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import TodoListItem from './list-item';
 
-export default class TodoList extends Component {
+class TodoList extends Component {
   render() {
     const { todos } = this.props;
 
     return (
       <ul className="todo-list">
-        {
-          _.map(todos, (todo, i) => {
-            return <TodoListItem key={i} todo={todo} />;
-          })
-        }
+        {_.map(todos, (todo, i) => <TodoListItem key={i} todo={todo} />)}
       </ul>
     );
   }
 }
+
+TodoList.propTypes = {
+  todos: PropTypes.array.isRequired,
+};
+
+export default TodoList;

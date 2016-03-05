@@ -22,7 +22,7 @@ const Store = {
       return;
     }
 
-    _.each(this.data, (_value, type) => this.data[type] = data[type] || []);
+    _.each(this.data, (_value, type) => { this.data[type] = data[type] || []; });
   },
 
   save() {
@@ -65,8 +65,8 @@ const Store = {
     updateState[type] = this.data[type];
 
     component.setState(updateState);
-  }
-}
+  },
+};
 
 Store.load(localStorage.store);
 

@@ -1,11 +1,11 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import actions from '../../../actions/todo';
 
 const { completeAllTodos, uncompleteAllTodos } = actions;
 
-export default class TodoListToggle extends Component {
+class TodoListToggle extends Component {
   allTodosCompleted() {
     const { todos } = this.props;
 
@@ -17,11 +17,16 @@ export default class TodoListToggle extends Component {
   handleChange() {
     const allTodosCompleted = this.allTodosCompleted();
 
-    allTodosCompleted ? uncompleteAllTodos() : completeAllTodos();
+    if (allTodosCompleted) {
+      uncompleteAllTodos();
+    } else {
+      completeAllTodos();
+    }
   }
 
   render() {
     const allTodosCompleted = this.allTodosCompleted();
+    const handleChange = this.handleChange.bind(this);
 
     return (
       <div>
@@ -29,7 +34,7 @@ export default class TodoListToggle extends Component {
           className="toggle-all"
           type="checkbox"
           checked={allTodosCompleted}
-          onChange={this.handleChange.bind(this)}
+          onChange={handleChange}
         />
         <label htmlFor="toggle-all">Mark all as complete</label>
       </div>
@@ -37,4 +42,8 @@ export default class TodoListToggle extends Component {
   }
 }
 
+TodoListToggle.propTypes = {
+  todos: PropTypes.array.isRequired,
+};
 
+export default TodoListToggle;

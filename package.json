@@ -36,6 +36,7 @@
     "eventsource-polyfill": "^0.9.6",
     "markdown-live": "^1.0.8",
     "nodemon": "^1.8.1",
+    "pre-commit": "^1.1.2",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.9.1"
   },
@@ -44,11 +45,12 @@
   },
   "scripts": {
     "start": "babel-node server.js",
-    "build": "npm run build:clean && npm run build:js",
+    "build": "npm run build:clean && npm run build:public && npm run build:js",
     "build:clean": "rm -rf _build && mkdir _build",
     "build:js": "npm run build:js:server && npm run build:js:webpack",
-    "build:js:server": "babel . --ignore=node_modules,src --out-dir=_build --source-maps=inline --copy-files",
+    "build:js:server": "babel . --ignore=node_modules,public,src --out-dir=_build --source-maps=inline --copy-files",
     "build:js:webpack": "webpack --config webpack.config.js",
+    "build:public": "cp -rf public _build/public",
     "lint": "npm run lint:js",
     "lint:js": "eslint src --fix",
     "postinstall": "npm run build",
