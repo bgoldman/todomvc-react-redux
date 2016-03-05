@@ -1,32 +1,46 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
+import { Router, Route, hashHistory } from 'react-router'
+
+import Store from '../../../lib/store';
 
 import TodoList from '../partials/list';
-import TodoListClear from '../partials/list-clear';
-import TodoListCount from '../partials/list-count';
+import TodoListClear from '../partials/clear';
+import TodoListCount from '../partials/count';
 import TodoListCreate from '../partials/create';
-import TodoListFilters from '../partials/list-filters';
-import TodoListToggle from '../partials/list-toggle';
+import TodoListFilters from '../partials/filters';
+import TodoListToggle from '../partials/toggle';
 
 export default class TodosIndexPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    const todos = [
-      {
-        title:     'Taste Javascript',
-        completed: true
-      },
-      {
-        title:     'Buy a unicorn',
-        completed: false
-      }
-    ];
+    this.state = { todos: [] };
+  }
 
-    this.state = { todos };
+  filteredTodos() {
+    const { filter } = this.props;
+    const { todos }  = this.state;
+
+    if (!filter) {
+      return todos;
+    }
+
+    return _.filter(todos, todo => todo.completed === (filter === 'completed'));
+  }
+
+  componentDidMount() {
+    Store.subscribe('todos', this);
+  }
+
+  componentWillUnmount() {
+    Store.unsubscribe('todos', this);
   }
 
   render() {
-    const { todos } = this.state;
+    const { filter }    = this.props;
+    const { todos }     = this.state;
+    const filteredTodos = this.filteredTodos();
 
     return (
       <section className="todoapp">
@@ -35,14 +49,18 @@ export default class TodosIndexPage extends Component {
           <TodoListCreate />
         </header>
         <section className="main">
-          <TodoListToggle />
-          <TodoList todos={todos} />
+          {filteredTodos.length > 0 &&
+            <TodoListToggle todos={filteredTodos} />
+          }
+          <TodoList todos={filteredTodos} />
         </section>
-        <footer className="footer">
-          <TodoListCount todos={todos} />
-          <TodoListFilters />
-          <TodoListClear />
-        </footer>
+        {todos.length > 0 &&
+          <footer className="footer">
+            <TodoListCount todos={todos} />
+            <TodoListFilters filter={filter} />
+            <TodoListClear />
+          </footer>
+        }
       </section>
     );
   }
