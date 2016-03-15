@@ -1,45 +1,41 @@
-import _ from 'lodash';
-
-import Store from '../lib/store';
+import * as TodoActions from '../constants/actions/todo';
 
 export function clearCompletedTodos() {
-  const todos = Store.get('todos');
-  const updatedTodos = _.reject(todos, todo => todo.completed);
-
-  Store.set('todos', updatedTodos);
+  return {
+    type: TodoActions.CLEARED_COMPLETED,
+  };
 }
 
 export function completeAllTodos() {
-  const todos = Store.get('todos');
-
-  _.each(todos, todo => {todo.completed = true;});
-  Store.set('todos', todos);
+  return {
+    type: TodoActions.COMPLETED_ALL,
+  };
 }
 
 export function createTodo(todo) {
-  const todos = Store.get('todos');
-
-  todos.push(todo);
-  Store.set('todos', todos);
+  return {
+    type: TodoActions.CREATED_TODO,
+    todo,
+  };
 }
 
 export function deleteTodo(todo) {
-  const todos = Store.get('todos');
-  const updatedTodos = _.reject(todos, t => todo === t);
-
-  Store.set('todos', updatedTodos);
+  return {
+    type: TodoActions.DELETED_TODO,
+    todo,
+  };
 }
 
 export function uncompleteAllTodos() {
-  const todos = Store.get('todos');
-
-  _.each(todos, todo => {todo.completed = false;});
-  Store.set('todos', todos);
+  return {
+    type: TodoActions.UNCOMPLETED_ALL,
+  };
 }
 
 export function updateTodo(todo, changes) {
-  const todos = Store.get('todos');
-
-  _.each(changes, (value, key) => { todo[key] = value; });
-  Store.set('todos', todos);
+  return {
+    type: TodoActions.UPDATED_TODO,
+    todo,
+    changes,
+  };
 }

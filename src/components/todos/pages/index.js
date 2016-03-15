@@ -1,39 +1,20 @@
 import _ from 'lodash';
+import { connect } from 'react-redux';
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 
-import Store from '../../../lib/store';
+import * as TodoActions from '../../../actions/todo';
 
-import {
-  clearCompletedTodos,
-  completeAllTodos,
-  createTodo,
-  deleteTodo,
-  uncompleteAllTodos,
-  updateTodo,
-} from '../../../actions/todo';
+import { convertActionsToPropType } from '../../../lib/prop-type-helpers';
+import { TodoPropType } from '../../../lib/prop-types';
 
 import TodoListFooter from '../partials/footer';
 import TodoListHeader from '../partials/header';
 import TodoListMain from '../partials/main';
 
 class TodosIndexPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { todos: [] };
-  }
-
-  componentDidMount() {
-    Store.subscribe('todos', this);
-  }
-
-  componentWillUnmount() {
-    Store.unsubscribe('todos', this);
-  }
-
   filteredTodos() {
-    const { filter } = this.props;
-    const { todos } = this.state;
+    const { filter, todos } = this.props;
 
     if (!filter) {
       return todos;
@@ -43,8 +24,19 @@ class TodosIndexPage extends Component {
   }
 
   render() {
-    const { filter } = this.props;
-    const { todos } = this.state;
+    const {
+      filter,
+      todoActions: {
+        clearCompletedTodos,
+        completeAllTodos,
+        createTodo,
+        deleteTodo,
+        uncompleteAllTodos,
+        updateTodo,
+      },
+      todos,
+    } = this.props;
+
     const filteredTodos = this.filteredTodos();
 
     return (
@@ -70,7 +62,19 @@ class TodosIndexPage extends Component {
 }
 
 TodosIndexPage.propTypes = {
-  filter: PropTypes.string,
+  filter:      PropTypes.string,
+  todoActions: convertActionsToPropType(TodoActions),
+  todos:       PropTypes.arrayOf(TodoPropType).isRequired,
 };
 
-export default TodosIndexPage;
+const mapDispatchToProps = dispatch => ({
+  todoActions: bindActionCreators(TodoActions, dispatch),
+});
+
+const mapStateToProps = state => {
+  const { todos } = state;
+
+  return { todos };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodosIndexPage);
