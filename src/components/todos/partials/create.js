@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import actions from '../../../actions/todo';
-
-const { createTodo } = actions;
+import { createTodo } from '../../../actions/todo';
 
 const ENTER_KEY = 13;
 

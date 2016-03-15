@@ -1,9 +1,7 @@
 import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 
-import actions from '../../../actions/todo';
-
-const { completeAllTodos, uncompleteAllTodos } = actions;
+import { completeAllTodos, uncompleteAllTodos } from '../../../actions/todo';
 
 class TodoListToggle extends Component {
   allTodosCompleted() {

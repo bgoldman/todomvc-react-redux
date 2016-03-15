@@ -1,8 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-import actions from '../../../actions/todo';
-
-const { deleteTodo } = actions;
+import { deleteTodo } from '../../../actions/todo';
 
 const TodoListItemDelete = ({ todo }) => {
   const handleClick = deleteTodo.bind(this, todo);

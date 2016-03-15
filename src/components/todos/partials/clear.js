@@ -1,8 +1,6 @@
 import React from 'react';
 
-import actions from '../../../actions/todo';
-
-const { clearCompletedTodos } = actions;
+import { clearCompletedTodos } from '../../../actions/todo';
 
 export default () => (
   <button className="clear-completed" onClick={clearCompletedTodos}>

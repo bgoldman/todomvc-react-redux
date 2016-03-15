@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import actions from '../../../actions/todo';
-
-const { deleteTodo, updateTodo } = actions;
+import { deleteTodo, updateTodo } from '../../../actions/todo';
 
 const ENTER_KEY = 13;
 const ESCAPE_KEY = 27;

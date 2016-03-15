@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import actions from '../../../actions/todo';
-
-const { updateTodo } = actions;
+import { updateTodo } from '../../../actions/todo';
 
 class TodoListItemComplete extends Component {
   handleCheck() {
