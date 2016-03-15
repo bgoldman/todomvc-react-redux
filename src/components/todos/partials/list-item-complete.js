@@ -7,8 +7,7 @@ const { updateTodo } = actions;
 class TodoListItemComplete extends Component {
   handleCheck() {
     const { todo } = this.props;
-
-    const { checkbox: { checked: completed } } = this.refs;
+    const { checked: completed } = this.refs.checkbox;
 
     updateTodo(todo, { completed });
   }

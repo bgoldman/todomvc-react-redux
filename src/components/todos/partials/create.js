@@ -13,7 +13,6 @@ export default class TodoListCreate extends Component {
     }
 
     const { 'new-todo': { value: title } } = this.refs;
-
     const completed = false;
 
     createTodo({ title, completed });

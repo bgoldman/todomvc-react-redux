@@ -4,21 +4,13 @@ import actions from '../../../actions/todo';
 
 const { deleteTodo } = actions;
 
-class TodoListItemDelete extends Component {
-  handleClick() {
-    const { todo } = this.props;
+const TodoListItemDelete = ({ todo }) => {
+  const handleClick = deleteTodo.bind(this, todo);
 
-    deleteTodo(todo);
-  }
-
-  render() {
-    const handleClick = this.handleClick.bind(this);
-
-    return (
-      <button className="destroy" onClick={handleClick} />
-    );
-  }
-}
+  return (
+    <button className="destroy" onClick={handleClick} />
+  );
+};
 
 TodoListItemDelete.propTypes = {
   todo: PropTypes.object.isRequired,

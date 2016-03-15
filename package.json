@@ -28,9 +28,9 @@
     "webpack": "^1.12.14"
   },
   "devDependencies": {
-    "babel-eslint": "^5.0.0",
+    "babel-eslint": "^6.0.0-beta.6",
     "babel-preset-react-hmre": "^1.1.0",
-    "eslint": "^2.2.0",
+    "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.0.2",
     "eslint-plugin-react": "^4.1.0",
     "eventsource-polyfill": "^0.9.6",
