@@ -64,11 +64,7 @@ class TodosIndexPage extends Component {
               uncompleteAllTodos={uncompleteAllTodos}
             />
           }
-          <TodoList
-            todos={filteredTodos}
-            deleteTodo={deleteTodo}
-            updateTodo={updateTodo}
-          />
+          <TodoList todos={filteredTodos} deleteTodo={deleteTodo} updateTodo={updateTodo} />
         </section>
         {todos.length > 0 &&
           <footer className="footer">

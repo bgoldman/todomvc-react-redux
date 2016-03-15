@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import { TodoPropType } from '../../../lib/prop-types';
+
 const TodoListItemDelete = ({ deleteTodo, todo }) => {
   const handleClick = deleteTodo.bind(this, todo);
 
@@ -10,7 +12,7 @@ const TodoListItemDelete = ({ deleteTodo, todo }) => {
 
 TodoListItemDelete.propTypes = {
   deleteTodo: PropTypes.func.isRequired,
-  todo:       PropTypes.object.isRequired,
+  todo:       TodoPropType.isRequired,
 };
 
 export default TodoListItemDelete;

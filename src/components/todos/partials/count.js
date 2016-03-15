@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 
+import { TodoPropType } from '../../../lib/prop-types';
+
 class TodoListCount extends Component {
   numActiveTodos() {
     const { todos } = this.props;
@@ -22,7 +24,7 @@ class TodoListCount extends Component {
 }
 
 TodoListCount.propTypes = {
-  todos: PropTypes.array.isRequired,
+  todos: PropTypes.arrayOf(TodoPropType).isRequired,
 };
 
 export default TodoListCount;

@@ -1,18 +1,18 @@
 import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 
-import { completeAllTodos, uncompleteAllTodos } from '../../../actions/todo';
+import { TodoPropType } from '../../../lib/prop-types';
 
 class TodoListToggle extends Component {
   allTodosCompleted() {
     const { todos } = this.props;
-
     const incompleteTodos = _.reject(todos, todo => todo.completed);
 
     return (incompleteTodos.length === 0);
   }
 
   handleChange() {
+    const { completeAllTodos, uncompleteAllTodos } = this.props;
     const allTodosCompleted = this.allTodosCompleted();
 
     if (allTodosCompleted) {
@@ -42,7 +42,7 @@ class TodoListToggle extends Component {
 
 TodoListToggle.propTypes = {
   completeAllTodos:   PropTypes.func.isRequired,
-  todos:              PropTypes.array.isRequired,
+  todos:              PropTypes.arrayOf(TodoPropType).isRequired,
   uncompleteAllTodos: PropTypes.func.isRequired,
 };
 

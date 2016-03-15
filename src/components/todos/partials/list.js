@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import React, { PropTypes } from 'react';
 
+import { TodoPropType } from '../../../lib/prop-types';
+
 import TodoListItem from './list-item';
 
 const TodoList = ({ deleteTodo, todos, updateTodo }) => (
@@ -18,7 +20,7 @@ const TodoList = ({ deleteTodo, todos, updateTodo }) => (
 
 TodoList.propTypes = {
   deleteTodo: PropTypes.func.isRequired,
-  todos:      PropTypes.array.isRequired,
+  todos:      PropTypes.arrayOf(TodoPropType).isRequired,
   updateTodo: PropTypes.func.isRequired,
 };
 

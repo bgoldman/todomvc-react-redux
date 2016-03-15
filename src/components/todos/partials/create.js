@@ -9,7 +9,12 @@ class TodoListCreate extends Component {
     }
 
     const { createTodo } = this.props;
-    const { 'new-todo': { value: title } } = this.refs;
+    const { value: title } = this.refs['new-todo'];
+
+    if (title === '') {
+      return;
+    }
+
     const completed = false;
 
     createTodo({ title, completed });

@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 import React, { Component, PropTypes } from 'react';
 
+import { TodoPropType } from '../../../lib/prop-types';
+
 import TodoListItemComplete from './list-item-complete';
 import TodoListItemDelete from './list-item-delete';
 import TodoListItemEdit from './list-item-edit';
@@ -48,7 +50,7 @@ class TodoListItem extends Component {
 
 TodoListItem.propTypes = {
   deleteTodo: PropTypes.func.isRequired,
-  todo:       PropTypes.object.isRequired,
+  todo:       TodoPropType.isRequired,
   updateTodo: PropTypes.func.isRequired,
 };
 
