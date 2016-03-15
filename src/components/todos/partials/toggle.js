@@ -3,6 +3,8 @@ import React, { Component, PropTypes } from 'react';
 
 import { TodoPropType } from '../../../lib/prop-types';
 
+import { TodoPropType } from '../../../lib/prop-types';
+
 class TodoListToggle extends Component {
   allTodosCompleted() {
     const { todos } = this.props;
