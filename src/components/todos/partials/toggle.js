@@ -41,7 +41,9 @@ class TodoListToggle extends Component {
 }
 
 TodoListToggle.propTypes = {
-  todos: PropTypes.array.isRequired,
+  completeAllTodos:   PropTypes.func.isRequired,
+  todos:              PropTypes.array.isRequired,
+  uncompleteAllTodos: PropTypes.func.isRequired,
 };
 
 export default TodoListToggle;

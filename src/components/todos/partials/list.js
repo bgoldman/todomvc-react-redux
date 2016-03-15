@@ -3,14 +3,23 @@ import React, { PropTypes } from 'react';
 
 import TodoListItem from './list-item';
 
-const TodoList = ({ todos }) => (
+const TodoList = ({ deleteTodo, todos, updateTodo }) => (
   <ul className="todo-list">
-    {_.map(todos, (todo, i) => <TodoListItem key={i} todo={todo} />)}
+    {_.map(todos, (todo, i) => (
+      <TodoListItem
+        key={i}
+        todo={todo}
+        deleteTodo={deleteTodo}
+        updateTodo={updateTodo}
+      />
+    ))}
   </ul>
 );
 
 TodoList.propTypes = {
-  todos: PropTypes.array.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  todos:      PropTypes.array.isRequired,
+  updateTodo: PropTypes.func.isRequired,
 };
 
 export default TodoList;

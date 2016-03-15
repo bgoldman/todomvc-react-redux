@@ -3,6 +3,15 @@ import React, { Component, PropTypes } from 'react';
 
 import Store from '../../../lib/store';
 
+import {
+  clearCompletedTodos,
+  completeAllTodos,
+  createTodo,
+  deleteTodo,
+  uncompleteAllTodos,
+  updateTodo,
+} from '../../../actions/todo';
+
 import TodoList from '../partials/list';
 import TodoListClear from '../partials/clear';
 import TodoListCount from '../partials/count';
@@ -45,19 +54,27 @@ class TodosIndexPage extends Component {
       <section className="todoapp">
         <header className="header">
           <h1>todos</h1>
-          <TodoListCreate />
+          <TodoListCreate createTodo={createTodo} />
         </header>
         <section className="main">
           {filteredTodos.length > 0 &&
-            <TodoListToggle todos={filteredTodos} />
+            <TodoListToggle
+              todos={filteredTodos}
+              completeAllTodos={completeAllTodos}
+              uncompleteAllTodos={uncompleteAllTodos}
+            />
           }
-          <TodoList todos={filteredTodos} />
+          <TodoList
+            todos={filteredTodos}
+            deleteTodo={deleteTodo}
+            updateTodo={updateTodo}
+          />
         </section>
         {todos.length > 0 &&
           <footer className="footer">
             <TodoListCount todos={todos} />
             <TodoListFilters filter={filter} />
-            <TodoListClear />
+            <TodoListClear clearCompletedTodos={clearCompletedTodos} />
           </footer>
         }
       </section>

@@ -21,7 +21,7 @@ class TodoListItem extends Component {
   }
 
   render() {
-    const { todo } = this.props;
+    const { deleteTodo, todo, updateTodo } = this.props;
     const { isEditing } = this.state;
     const startEditing = this.startEditing.bind(this);
     const stopEditing = this.stopEditing.bind(this);
@@ -29,12 +29,17 @@ class TodoListItem extends Component {
     return (
       <li className={classNames({ completed: todo.completed, editing: isEditing })}>
         <div className="view">
-          <TodoListItemComplete todo={todo} />
+          <TodoListItemComplete todo={todo} updateTodo={updateTodo} />
           <label ref="label" onDoubleClick={startEditing}>{todo.title}</label>
-          <TodoListItemDelete todo={todo} />
+          <TodoListItemDelete todo={todo} deleteTodo={deleteTodo} />
         </div>
         {isEditing &&
-          <TodoListItemEdit todo={todo} stopEditing={stopEditing} />
+          <TodoListItemEdit
+            todo={todo}
+            stopEditing={stopEditing}
+            deleteTodo={deleteTodo}
+            updateTodo={updateTodo}
+          />
         }
       </li>
     );
@@ -42,7 +47,9 @@ class TodoListItem extends Component {
 }
 
 TodoListItem.propTypes = {
-  todo: PropTypes.object.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  todo:       PropTypes.object.isRequired,
+  updateTodo: PropTypes.func.isRequired,
 };
 
 export default TodoListItem;

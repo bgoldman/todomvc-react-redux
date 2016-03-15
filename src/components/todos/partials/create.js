@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
-
-import { createTodo } from '../../../actions/todo';
+import React, { Component, PropTypes } from 'react';
 
 const ENTER_KEY = 13;
 
-export default class TodoListCreate extends Component {
+class TodoListCreate extends Component {
   handleSubmit(e) {
     if (e.which !== ENTER_KEY) {
       return;
     }
 
+    const { createTodo } = this.props;
     const { 'new-todo': { value: title } } = this.refs;
     const completed = false;
 
@@ -32,3 +31,9 @@ export default class TodoListCreate extends Component {
     );
   }
 }
+
+TodoListCreate.propTypes = {
+  createTodo: PropTypes.func.isRequired,
+};
+
+export default TodoListCreate;

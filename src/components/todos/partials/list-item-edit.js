@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-import { deleteTodo, updateTodo } from '../../../actions/todo';
-
 const ENTER_KEY = 13;
 const ESCAPE_KEY = 27;
 
@@ -24,7 +22,8 @@ class TodoListItemEdit extends Component {
       return;
     }
 
-    const { edit: { value: title } } = this.refs;
+    const { deleteTodo, updateTodo } = this.props;
+    const { value: title } = this.refs.edit;
 
     stopEditing();
 
@@ -53,8 +52,10 @@ class TodoListItemEdit extends Component {
 }
 
 TodoListItemEdit.propTypes = {
+  deleteTodo:  PropTypes.func.isRequired,
   stopEditing: PropTypes.func.isRequired,
   todo:        PropTypes.object.isRequired,
+  updateTodo:  PropTypes.func.isRequired,
 };
 
 export default TodoListItemEdit;

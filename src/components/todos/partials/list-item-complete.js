@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-import { updateTodo } from '../../../actions/todo';
-
 class TodoListItemComplete extends Component {
   handleCheck() {
-    const { todo } = this.props;
+    const { todo, updateTodo } = this.props;
     const { checked: completed } = this.refs.checkbox;
 
     updateTodo(todo, { completed });
@@ -27,7 +25,8 @@ class TodoListItemComplete extends Component {
 }
 
 TodoListItemComplete.propTypes = {
-  todo: PropTypes.object.isRequired,
+  todo:       PropTypes.object.isRequired,
+  updateTodo: PropTypes.func.isRequired,
 };
 
 export default TodoListItemComplete;
