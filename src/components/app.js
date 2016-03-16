@@ -1,7 +1,7 @@
 import React from 'react';
 import { IndexRoute, Route, Router, hashHistory } from 'react-router';
 
-import Footer from './layout/footer';
+import Page from './layout/page';
 import TodosPage from './todos/pages';
 
 export default () => {
@@ -9,7 +9,7 @@ export default () => {
   const CompletedTodosPage = () => <TodosPage filter="completed" />;
 
   return (
-    <div className="app-container">
+    <Page>
       <Router history={hashHistory}>
         <Route path="/">
           <IndexRoute component={TodosPage} />
@@ -17,7 +17,6 @@ export default () => {
           <Route path="completed" component={CompletedTodosPage} />
         </Route>
       </Router>
-      <Footer />
-    </div>
+    </Page>
   );
 };

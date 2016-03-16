@@ -12,12 +12,9 @@ import {
   updateTodo,
 } from '../../../actions/todo';
 
-import TodoList from '../partials/list';
-import TodoListClear from '../partials/clear';
-import TodoListCount from '../partials/count';
-import TodoListCreate from '../partials/create';
-import TodoListFilters from '../partials/filters';
-import TodoListToggle from '../partials/toggle';
+import TodoListFooter from '../partials/footer';
+import TodoListHeader from '../partials/header';
+import TodoListMain from '../partials/main';
 
 class TodosIndexPage extends Component {
   constructor(props) {
@@ -51,29 +48,23 @@ class TodosIndexPage extends Component {
     const filteredTodos = this.filteredTodos();
 
     return (
-      <section className="todoapp">
-        <header className="header">
-          <h1>todos</h1>
-          <TodoListCreate createTodo={createTodo} />
-        </header>
-        <section className="main">
-          {filteredTodos.length > 0 &&
-            <TodoListToggle
-              todos={filteredTodos}
-              completeAllTodos={completeAllTodos}
-              uncompleteAllTodos={uncompleteAllTodos}
-            />
-          }
-          <TodoList todos={filteredTodos} deleteTodo={deleteTodo} updateTodo={updateTodo} />
-        </section>
+      <div>
+        <TodoListHeader createTodo={createTodo} />
+        <TodoListMain
+          todos={filteredTodos}
+          completeAllTodos={completeAllTodos}
+          deleteTodo={deleteTodo}
+          uncompleteAllTodos={uncompleteAllTodos}
+          updateTodo={updateTodo}
+        />
         {todos.length > 0 &&
-          <footer className="footer">
-            <TodoListCount todos={todos} />
-            <TodoListFilters filter={filter} />
-            <TodoListClear clearCompletedTodos={clearCompletedTodos} />
-          </footer>
+          <TodoListFooter
+            filter={filter}
+            todos={todos}
+            clearCompletedTodos={clearCompletedTodos}
+          />
         }
-      </section>
+      </div>
     );
   }
 }
