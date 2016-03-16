@@ -9,10 +9,10 @@ import WebpackConfig from './webpack.config.js';
 const { name, version } = Package;
 
 // which env are we?
-const env = config.get('server.environment');
+const env = config.get('client.environment');
 
 // we need to allow a port override in deployments using env vars
-const port = config.get('server.port');
+const port = config.get('client.port');
 
 // instantiate our Express instance
 const app = express();

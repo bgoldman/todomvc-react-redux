@@ -104,6 +104,8 @@ TBD
 
 ## Deployment
 
+Set the environment variable for NODE_ENV to `production`
+
 TBD
 
 ## Documentation

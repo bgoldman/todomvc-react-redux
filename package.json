@@ -5,7 +5,7 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bgoldman/Todomvc-react"
+    "url": "https://github.com/bgoldman/todomvc-react"
   },
   "author": "Brandon Goldman",
   "license": "MIT",
