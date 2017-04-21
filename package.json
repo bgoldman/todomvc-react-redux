@@ -1,11 +1,11 @@
 {
   "name": "todomvc-react",
   "version": "0.1.0",
-  "description": "An implementation of Todo MVC using React.",
+  "description": "An implementation of Todo MVC using React and Redux.",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bgoldman/todomvc-react"
+    "url": "https://github.com/bgoldman/todomvc-react-redux"
   },
   "author": "Brandon Goldman",
   "license": "MIT",
@@ -27,7 +27,6 @@
     "react-redux": "^4.4.1",
     "react-router": "^2.0.0",
     "redux": "^3.3.1",
-    "redux-devtools": "^3.1.1",
     "redux-localstorage": "^0.4.0",
     "webpack": "^1.12.14"
   },
@@ -41,6 +40,10 @@
     "markdown-live": "^1.0.8",
     "nodemon": "^1.8.1",
     "pre-commit": "^1.1.2",
+    "redux-devtools": "^3.1.1",
+    "redux-devtools-dock-monitor": "^1.1.0",
+    "redux-devtools-inspector": "^0.3.1",
+    "redux-devtools-log-monitor": "^1.0.5",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.9.1"
   },
