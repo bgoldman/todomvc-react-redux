@@ -2,7 +2,7 @@
 // we need to do this because the web browser can't read files using 'fs',
 // resulting in the 'config' package not working,
 // and so we need to precalculate the values and import the values here.
-import configValues from '../../_build/config.js';
+import configValues from '../../_build/config';
 
 // from http://stackoverflow.com/a/6491621
 const getByPropPath = (path, obj) => {
@@ -12,7 +12,7 @@ const getByPropPath = (path, obj) => {
   let currentObj = obj;
   const pathParts = currentPath.split('.');
 
-  for (let i = 0, n = pathParts.length; i < n; ++i) {
+  for (let i = 0, n = pathParts.length; i < n; i += 1) {
     const key = pathParts[i];
 
     if (!(key in currentObj)) {

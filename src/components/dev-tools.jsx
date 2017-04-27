@@ -12,5 +12,5 @@ export default createDevTools(
   >
     <LogMonitor theme="nicinabox" />
     <Inspector theme="solarized" />
-  </DockMonitor>
+  </DockMonitor>,
 );

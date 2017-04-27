@@ -24,30 +24,39 @@ if (isBuilding) precalculateConfig();
 var isDev = (process.env.NODE_ENV !== 'production');
 
 module.exports = {
-  debug:   isDev,
   devtool: isDev ? 'cheap-module-eval-source-map' : 'source-map',
   entry:   isDev ? [
     'eventsource-polyfill', // necessary for hot reloading with IE
     'webpack-hot-middleware/client',
-    './src/index'
+    './src/index',
   ] : ['./src/index'],
+  module: {
+    rules: [{
+      test:    /\.js?/,
+      include: path.join(__dirname, 'src'),
+      loader:  'babel-loader',
+    }],
+  },
   output: {
     path:       path.join(__dirname, '_build'),
     filename:   'app.js',
-    publicPath: '/static/scripts/'
+    publicPath: '/static/scripts/',
   },
   plugins: isDev ? [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.LoaderOptionsPlugin({ debug: true }),
+    new webpack.NoEmitOnErrorsPlugin(),
+
+    // fix backwards compatibility issue with jsondifftools, a dependency of redux-devtools-inspector
+    new webpack.ContextReplacementPlugin(/.*/, path.resolve(__dirname, 'node_modules', 'jsondiffpatch'), {
+      '../package.json': './package.json',
+      './formatters': './src/formatters/index.js',
+      './console': './src/formatters/console.js'
+    }),
   ] : [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ compressor: { warnings: false} })
+    new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
   ],
-  module: {
-    loaders: [{
-      test:    /\.js?/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'src')
-    }],
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
 };

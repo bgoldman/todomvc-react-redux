@@ -1,0 +1,7 @@
+{
+    "publicConfigs": ["client"],
+    "client": {
+        "environment": null,
+        "port":        null
+    }
+}

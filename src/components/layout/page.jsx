@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import config from '../../lib/public-config';
 
@@ -18,7 +19,7 @@ const LayoutPage = ({ children }) => (
 );
 
 LayoutPage.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
 };
 
 export default LayoutPage;

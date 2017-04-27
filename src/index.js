@@ -6,4 +6,6 @@ import store from './lib/store';
 
 import App from './components/app';
 
-render(<Provider store={store}><App /></Provider>, document.getElementById('app'));
+const provider = React.createElement(Provider, { store }, React.createElement(App));
+
+render(provider, document.getElementById('app'));

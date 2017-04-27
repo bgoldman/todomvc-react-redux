@@ -2,22 +2,10 @@
   "ecmaFeatures": {
     "modules": true
   },
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "parser": "babel-eslint",
-  "extends": "airbnb",
-  "rules": {
-    "key-spacing": [2, {
-      "singleLine": {
-        "beforeColon": false,
-        "afterColon": true
-      },
-      "multiLine": {
-        "beforeColon": false,
-        "afterColon": true,
-        "align": "value"
-      }
-    }],
-    "new-cap": [2, { "capIsNew": false, "newIsCap": true }],
-    "no-param-reassign": [2, {"props": false}],
-    "no-unused-vars": [2, {"args": "after-used", "argsIgnorePattern": "^_"}]
-  }
+  "extends": "airbnb"
 }

@@ -1,6 +1,7 @@
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 
 import * as TodoActions from '../../../actions/todo';
@@ -71,7 +72,7 @@ const mapDispatchToProps = dispatch => ({
   todoActions: bindActionCreators(TodoActions, dispatch),
 });
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { todos } = state;
 
   return { todos };

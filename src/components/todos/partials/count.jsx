@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import React, { Component, PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import { TodoPropType } from '../../../lib/prop-types';
 
@@ -16,7 +17,7 @@ class TodoListCount extends Component {
     return (
       <span className="todo-count">
         <strong>{numActiveTodos}</strong>
-        <span> </span>
+        <span>&nbsp;</span>
         item{numActiveTodos !== 1 && 's'} left
       </span>
     );
