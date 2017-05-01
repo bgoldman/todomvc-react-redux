@@ -17,7 +17,9 @@ var precalculateConfig = function() {
   fs.writeFileSync('./_build/config.js', 'module.exports = ' + JSON.stringify(configValues));
 };
 
-precalculateConfig();
+var isBuilding = (path.basename(__dirname) !== '_build');
+
+if (isBuilding) precalculateConfig();
 
 var isDev = (process.env.NODE_ENV !== 'production');
 
